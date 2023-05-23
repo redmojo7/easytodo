@@ -3,12 +3,12 @@ const todoRouter = express.Router();
 const Todo = require('../models/Todo');
 
 todoRouter.get('/', async (req, res) => {
-    const todos = await Todo.find();
+    const todos = await (await Todo.find()).reverse();
     res.render('index', { title: 'Welcome to todoRouter', toDoList: todos });
 });
 
-todoRouter.post('/todos', async (req, res) => {
-    console.log("create body", req.body);
+todoRouter.post('/', async (req, res) => {
+    console.log("create todo: ", req.body);
     const todo = new Todo({
         name: req.body.taskName
     }
@@ -17,7 +17,7 @@ todoRouter.post('/todos', async (req, res) => {
     res.redirect('/');
 });
 
-todoRouter.delete('/todos/:id', async (req, res) => {
+todoRouter.delete('/:id', async (req, res) => {
     const id = req.params.id;
     await Todo.findByIdAndDelete(id);
     console.debug(`Todo with id ${id} deleted successfully`);

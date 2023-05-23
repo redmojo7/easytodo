@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const todoRoutes = require('./routes/todoRoute');
+const todoRoutes = require('./routes/todosRoute');
 const initialize = require('./init');
 const bodyParser = require('body-parser');
 
@@ -13,10 +13,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Use routes
-app.use('/', todoRoutes);
+app.use('/todos', todoRoutes);
 
-initialize();
-
-app.listen(3003, function () {
-    console.log('Example app listening on port 3003!');
+// Default route
+app.get('/', (req, res) => {
+    res.redirect('/todos');
 });
+
+initialize().then(() => {
+    console.log('Database initialized');
+    app.listen(3003, function () {
+        console.log('EasyToDo App listening on port 3003!');
+    });
+}).catch((err) => {
+    console.error(err);
+    process.exit(1);
+});
+

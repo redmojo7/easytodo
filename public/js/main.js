@@ -1,11 +1,14 @@
 $(document).ready(function () {
-    $('.button.delete-todo').on('click', function (e) {
-        e.preventDefault(); $target = $(e.target); const id = $target.attr('data-todoid'); $.ajax({
+    $('.btn.btn-danger.delete-todo').on('click', function (e) {
+        e.preventDefault();
+        $target = $(e.target);
+        const id = $target.attr('data-todoid');
+        $.ajax({
             type: 'DELETE',
             url: '/todos/' + id,
             success: function (response) {
                 // If delete was successful. 
-                console.log(response); 
+                console.log(response);
                 window.location.href = "/";
             },
             error: function (err) {
@@ -15,3 +18,12 @@ $(document).ready(function () {
         });
     });
 });
+
+function validateForm() {
+    var nameInput = document.querySelector('input[name="taskName"]');
+    if (nameInput.value.trim() === '') {
+        alert('Please enter a task name');
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}

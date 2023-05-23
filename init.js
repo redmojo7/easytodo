@@ -3,9 +3,11 @@ const Todo = require('./models/Todo');
 const db = require('./db');
 
 const todos = [
-    {name: 'Task 1'},
-    {name: 'Task 2'},
-    {name: 'Task 3'}
+    {name: 'Finish COMP6006 Prac'},
+    {name: 'Walk the dog'},
+    {name: 'Buy groceries'},
+    {name: 'Do laundry'},
+    {name: 'Clean the house'},
 ];
 
 

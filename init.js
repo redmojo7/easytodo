@@ -14,8 +14,8 @@ const todos = [
 const initialize = async () => {
   await Todo.deleteMany(); // Optional: delete all existing Todos before inserting new one
   console.log('Todos deleted successfully');
-  const createdUsers = await Todo.create(todos);
-  console.log('[createdUsers]', createdUsers);
+  const createdTodos = await Todo.create(todos);
+  console.log('[createdTodos]', createdTodos);
   console.log('Todo created successfully.');
 }
 

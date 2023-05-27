@@ -22,7 +22,7 @@ $(document).ready(function () {
 function validateForm() {
     var nameInput = document.querySelector('input[name="taskName"]');
     if (nameInput.value.trim() === '') {
-        alert('Please enter a task name');
+        alert('Please enter a valid task name');
         return false; // Prevent form submission
     }
     return true; // Allow form submission
